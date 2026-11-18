@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Demo</title>
+</head>
+<body>
+
+<h2>Cybersecurity Location Demo</h2>
+
+<button onclick="getLocation()">
+    Share My Location
+</button>
+
+<p id="result"></p>
+
+<script>
+function getLocation() {
+
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            document.getElementById("result").innerHTML =
+                "Latitude: " + lat +
+                "<br>Longitude: " + lon +
+                "<br><a target='_blank' href='https://www.google.com/maps?q="
+                + lat + "," + lon + "'>View on Google Maps</a>";
+        },
+
+        function(error) {
+            alert("Location permission denied or unavailable");
+        }
+    );
+}
+</script>
+
+</body>
+</html>
